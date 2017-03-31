@@ -8,8 +8,9 @@
 #' @param decimals Specifies the number of digits to the right of the decimal
 #' @export
 num <- function(x, use_cents = FALSE, digits, decimals) {
-  if (!length(x) == 1) stop('dol only accepts single numbers')
-  if (!is.numeric(x)) stop('Non-numeric argument supplied to dol.')
+  if (!length(x) == 1) stop('num only accepts single numbers')
+  if (!is.numeric(x)) stop('Non-numeric argument supplied to num.')
+  if (is.na(x)) stop('NA value supplied to num')
 
   num_digits <- ceiling(log10(x))
 
