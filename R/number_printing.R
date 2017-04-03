@@ -63,3 +63,23 @@ pct <- function(x, decimals = 1) {
   sprintf('%s percent',
           round(x*100, digits = decimals))
 }
+
+#' Round data.table Columns for Displaying
+#'
+#' This function replaces the numbers in a data.table with rounded versions that
+#' are limited to a specified number of decimal places.  The changes are made
+#' by reference.
+#' @param var_list A vector of variable names (as characters)
+#' @param dt Data.table to be changed
+#' @param decimals The number of decimals to display
+#' @export
+round4display <- function(var_list, dt, decimals = 0) {
+  if (any(var_list %notin% names(dt)))
+    stop('Not all variables in var_list are part of dt')
+
+  for (var in var_list) {
+    x <- dt[, var, with = FALSE]
+    dt[, `:=`(var, round(x, decimals))]
+  }
+  dt
+}
