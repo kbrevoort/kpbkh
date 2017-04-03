@@ -64,6 +64,8 @@ pct <- function(x, decimals = 1) {
           round(x*100, digits = decimals))
 }
 
+`%notin%` <- Negate(`%in%`)
+
 #' Round data.table Columns for Displaying
 #'
 #' This function replaces the numbers in a data.table with rounded versions that
@@ -79,8 +81,8 @@ round4display <- function(var_list, dt, decimals = 0) {
     stop('Not all variables in var_list are part of dt')
 
   for (var in var_list) {
-    x <- dt[, var, with = FALSE]
-    dt[, `:=`(var, round(x, decimals))]
+    my_x <- dt[, var, with = FALSE]
+    set(dt, j = var, value = round(my_x, decimals))
   }
   dt
 }
