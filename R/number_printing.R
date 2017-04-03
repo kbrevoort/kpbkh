@@ -59,6 +59,7 @@ dol <- function(x, ...) {
           num(x, ...))
 }
 
+#export
 pct <- function(x, decimals = 1) {
   sprintf('%s percent',
           round(x*100, digits = decimals))

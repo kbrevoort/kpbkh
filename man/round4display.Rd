@@ -4,12 +4,12 @@
 \alias{round4display}
 \title{Round data.table Columns for Displaying}
 \usage{
-round4display(var_list, dt, decimals = 0)
+round4display(dt, var_list, decimals = 0)
 }
 \arguments{
-\item{var_list}{A vector of variable names (as characters)}
-
 \item{dt}{Data.table to be changed}
+
+\item{var_list}{A vector of variable names (as characters)}
 
 \item{decimals}{The number of decimals to display}
 }
