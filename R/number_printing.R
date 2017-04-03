@@ -76,7 +76,7 @@ pct <- function(x, decimals = 1) {
 #' @param decimals The number of decimals to display
 #' @import data.table
 #' @export
-round4display <- function(var_list, dt, decimals = 0) {
+round4display <- function(dt, var_list, decimals = 0) {
   if (any(var_list %notin% names(dt)))
     stop('Not all variables in var_list are part of dt')
 
