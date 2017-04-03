@@ -72,6 +72,7 @@ pct <- function(x, decimals = 1) {
 #' @param var_list A vector of variable names (as characters)
 #' @param dt Data.table to be changed
 #' @param decimals The number of decimals to display
+#' @import data.table
 #' @export
 round4display <- function(var_list, dt, decimals = 0) {
   if (any(var_list %notin% names(dt)))

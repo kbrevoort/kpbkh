@@ -1,11 +1,12 @@
 Package: kpbkh
 Type: Package
 Title: Ken's Knitr Helper
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: person("Kenneth", "Brevoort", email = "kenneth.brevoort@cfpb.gov", role = c("aut", "cre"))
 Description: This package contains functions I use to print information in R Markdown documents.
 Depends:
-  magrittr
+  magrittr,
+  data.table
 License: What license is it under?
 LazyData: TRUE
 RoxygenNote: 6.0.1
