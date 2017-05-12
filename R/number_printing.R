@@ -87,3 +87,35 @@ round4display <- function(dt, var_list, decimals = 0) {
   }
   dt
 }
+
+#' Convert a number to a ratio
+#'
+#' This function takes a percentage and converts it to a 1-in-X ratio.  It also
+#' attempts to add a qualifier (e.g., about, almost).
+onein <- function(x) {
+  if (!is.numeric(x) | length(x) != 1) stop('Invalid input to onein')
+  if (x <= 0) {
+    warning('Negative value sent to onein')
+    return('NA')
+  }
+
+  # x may be a percentage
+  if (x > 1) {
+    x <- x / 100
+    if (x > 1)
+      stop(sprintf('Implausibly large value sent to onein: %s', x * 100))
+  }
+
+  x_inv <- 1 / x
+  x_round <- round(x_inv, digits = 0)
+
+  if (abs(x_round - x_inv) < 0.1) {
+    return(sprintf('about 1-in-%d', x_round))
+  } else if (x_inv > x_round) {
+    return(sprintf('almost 1-in-%d', x_round))
+  } else if (x_inv < x_round) {
+    return(sprintf('more than 1-in-%d', x_round))
+  }
+
+  return('NA')
+}
