@@ -92,7 +92,7 @@ round4display <- function(dt, var_list, decimals = 0) {
 #'
 #' This function takes a percentage and converts it to a 1-in-X ratio.  It also
 #' attempts to add a qualifier (e.g., about, almost).
-onein <- function(x) {
+onein <- function(x, qualifier = TRUE) {
   if (!is.numeric(x) | length(x) != 1) stop('Invalid input to onein')
   if (x <= 0) {
     warning('Negative value sent to onein')
@@ -109,12 +109,16 @@ onein <- function(x) {
   x_inv <- 1 / x
   x_round <- round(x_inv, digits = 0)
 
+  qual <- ''
   if (abs(x_round - x_inv) < 0.1) {
-    return(sprintf('about 1-in-%d', x_round))
+    if (qualifier) qual <- 'about '
+    return(sprintf('%s1-in-%d', qual, x_round))
   } else if (x_inv > x_round) {
-    return(sprintf('almost 1-in-%d', x_round))
+    if (qualifier) qual <- 'almost '
+    return(sprintf('%s1-in-%d', qual, x_round))
   } else if (x_inv < x_round) {
-    return(sprintf('more than 1-in-%d', x_round))
+    if (qualifier) qual <- 'more than '
+    return(sprintf('%s1-in-%d', qual, x_round))
   }
 
   return('NA')
